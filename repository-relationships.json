@@ -1,10 +1,138 @@
 {
+  "$schema": "./repository-relationships.schema.json",
+  "audience": "public",
+  "generated": {
+    "complete_for_visibility": "public",
+    "generated_at": "2026-08-05T21:07:32Z",
+    "generator_version": "2026-08-04.1",
+    "inventory_digest": "sha256:6727f4becc02ab280bfa0ab48b16685582ba161378efcfdfd505826c3fbac2e6",
+    "managed_by": "ore-repository-relationship-rollout",
+    "omitted_repository_count": 8,
+    "private_repositories_omitted": true,
+    "source": "GitHub GraphQL repository inventory plus reviewed manual declarations"
+  },
+  "owner": {
+    "account_type": "organization",
+    "dotgithub_repository": "akrion-sim/.github",
+    "github_id": "297237523",
+    "linear_project": {
+      "id": "921fcb5b-5a3d-44ef-8663-a78121b476df",
+      "name": "github.com/akrion-sim",
+      "team_id": "eb8ab169-5afe-4b6f-9cab-3f2aa3e887dc",
+      "url": "https://linear.app/denman/project/githubcomakrion-sim-c66c5e5e8f12",
+      "workspace": "denman"
+    },
+    "login": "akrion-sim",
+    "mapping_id": "context:akrion-sim"
+  },
+  "private_registry": {
+    "contains_non_public_inventory": true,
+    "digest": "sha256:cfeda5011b8b7f87daf0a3c36b83e29b3b35166ac7656b53a787d04c31d924c4",
+    "path": "owners/akrion-sim.json",
+    "repository": "ORESoftware/project-registry"
+  },
+  "relationships": [
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "akrion-sim/.github",
+      "id": "sha256:1de61556fdcf529b247d3652b66d05c217917bde4d1cee7aa0cced784a58677f",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "akrion-sim/akrion-sim.github.io",
+      "type": "governs"
+    },
+    {
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "kind": "github-owner-membership",
+          "source": "GitHub GraphQL repository inventory"
+        }
+      ],
+      "from": "akrion-sim/.github",
+      "id": "sha256:9ef0d8a7b03d6975b30ead7fc57f4611467840cb33700501ff0153a390dd2516",
+      "notes": "Organization .github policy and community-health defaults govern this sibling repository.",
+      "required": true,
+      "scope": "organization",
+      "status": "declared",
+      "to": "akrion-sim/akrion-soccer-engine-rs",
+      "type": "governs"
+    },
+    {
+      "confidence": 0.95,
+      "evidence": [
+        {
+          "kind": "repository-name",
+          "value": "akrion-sim.github.io"
+        }
+      ],
+      "from": "akrion-sim/akrion-sim.github.io",
+      "id": "sha256:3725f70cb3d49c79fee91a608c13a37d83f605a534365e9fa6e66061bad75857",
+      "notes": "The conventional *.github.io repository documents the organization profile.",
+      "required": false,
+      "scope": "organization",
+      "status": "inferred",
+      "to": "akrion-sim/.github",
+      "type": "documents"
+    }
+  ],
+  "repositories": [
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "akrion-sim/.github",
+      "github_id": "1324046903",
+      "name": ".github",
+      "owner": "akrion-sim",
+      "roles": [
+        "community-health",
+        "governance",
+        "relationship-registry"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/akrion-sim/.github",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "akrion-sim/akrion-sim.github.io",
+      "github_id": "1298711009",
+      "name": "akrion-sim.github.io",
+      "owner": "akrion-sim",
+      "roles": [
+        "documentation-site"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/akrion-sim/akrion-sim.github.io",
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "akrion-sim/akrion-soccer-engine-rs",
+      "github_id": "1283329470",
+      "name": "akrion-soccer-engine-rs",
+      "owner": "akrion-sim",
+      "roles": [
+        "repository"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/akrion-sim/akrion-soccer-engine-rs",
+      "visibility": "public"
+    }
+  ],
   "schema_version": 1,
-  "organization": "akrion-sim",
-  "generated_at": null,
-  "repositories": [],
-  "notes": [
-    "Populate from live GitHub inventory; do not infer unverified dependencies.",
-    "Repository-local manifests remain authoritative for exact dependency versions."
-  ]
+  "unresolved_hints": []
 }
