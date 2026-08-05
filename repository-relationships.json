@@ -29,7 +29,7 @@
     "contains_non_public_inventory": true,
     "digest": "sha256:cfeda5011b8b7f87daf0a3c36b83e29b3b35166ac7656b53a787d04c31d924c4",
     "path": "owners/akrion-sim.json",
-    "repository": "ORESoftware/project-registry"
+    "repository": "approved-private-registry"
   },
   "relationships": [
     {
