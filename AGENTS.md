@@ -47,6 +47,7 @@ The blacklist includes, without limitation:
 - bypassing hooks, reviews, branch protection, rulesets, required checks, security/compliance gates, approvals, or audit logging, including `--no-verify` and equivalent bypasses.
 
 Do not use destructive commands merely to make tests pass, clear a conflict, simplify a migration, or hide an inconvenient state.
+For synchronization and conflict integration, avoid git rebase in favor of git merge.
 
 ### Required safe alternatives
 
