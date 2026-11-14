@@ -1,0 +1,41 @@
+name: Simulation replay discrepancy
+description: Report a deterministic simulation mismatch using sanitized reproducibility data
+title: "replay: "
+labels: ["bug"]
+body:
+  - type: input
+    id: source_revision
+    attributes:
+      label: Exact source revision
+      description: Full commit SHA for the simulation engine (not a floating branch)
+      placeholder: 40-character git commit SHA
+    validations:
+      required: true
+  - type: input
+    id: seed
+    attributes:
+      label: Deterministic seed
+      description: A synthetic seed that reproduces the mismatch
+    validations:
+      required: true
+  - type: textarea
+    id: expected_actual
+    attributes:
+      label: Expected and actual checksums
+      description: State the exact tick, expected checksum and observed checksum
+    validations:
+      required: true
+  - type: textarea
+    id: minimal_replay
+    attributes:
+      label: Minimal synthetic reproduction
+      description: Include a command or test name and bounded actions, never user data
+    validations:
+      required: true
+  - type: checkboxes
+    id: redaction
+    attributes:
+      label: Evidence safety
+      options:
+        - label: Reproduction and logs contain no tokens, private user data, or production datasets
+          required: true
