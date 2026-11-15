@@ -162,8 +162,8 @@ fn check(base: &str, head: &str) -> Result<(), String> {
         head,
         "--",
     ])?;
-    let patch = String::from_utf8(patch)
-        .map_err(|_| "non-UTF8 diff is not admissible".to_owned())?;
+    let patch =
+        String::from_utf8(patch).map_err(|_| "non-UTF8 diff is not admissible".to_owned())?;
     let mut errors = inspect_paths(&paths);
     errors.extend(inspect_diff(&patch));
     if !errors.is_empty() {
