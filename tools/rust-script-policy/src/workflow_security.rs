@@ -52,13 +52,18 @@ pub fn validate_text(path: &str, source: &str) -> Vec<String> {
 
 pub fn verify_repository() -> Result<(), String> {
     let root = Path::new(".github/workflows");
-    let files = fs::read_dir(root)
-        .map_err(|error| format!("cannot read {}: {error}", root.display()))?;
+    let files =
+        fs::read_dir(root).map_err(|error| format!("cannot read {}: {error}", root.display()))?;
     let mut paths = Vec::new();
     for file in files {
-        let path = file.map_err(|error| format!("cannot read directory entry: {error}"))?.path();
+        let path = file
+            .map_err(|error| format!("cannot read directory entry: {error}"))?
+            .path();
         if path.is_file()
-            && matches!(path.extension().and_then(|ext| ext.to_str()), Some("yml" | "yaml"))
+            && matches!(
+                path.extension().and_then(|ext| ext.to_str()),
+                Some("yml" | "yaml")
+            )
         {
             paths.push(path);
         }
