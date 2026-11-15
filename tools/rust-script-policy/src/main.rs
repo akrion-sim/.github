@@ -61,7 +61,12 @@ fn has_word(text: &str, needle: &str) -> bool {
 
 fn invokes_python(added_line: &str) -> bool {
     let value = added_line.trim().to_ascii_lowercase();
-    if value.is_empty() || value.starts_with('#') {
+    if value.is_empty()
+        || value.starts_with('#')
+        || value.starts_with("- name:")
+        || value.starts_with("name:")
+        || value.starts_with("description:")
+    {
         return false;
     }
     if value.contains("setup-python@") {
@@ -256,6 +261,7 @@ mod tests {
         assert!(invokes_python(" uses: actions/setup-python@deadbeef"));
         assert!(invokes_python(" run: pip install jsonschema"));
         assert!(!invokes_python(" run: cargo test --all"));
+        assert!(!invokes_python(" - name: Reject new Python tests"));
     }
 
     #[test]
