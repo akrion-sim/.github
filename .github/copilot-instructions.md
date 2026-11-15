@@ -64,3 +64,27 @@ Never print, log, commit, paste into issues, include in fixtures, or expose toke
 
 Use focused branches and pull requests. Link the relevant Linear issue or project. Explain behavior, risks, migration and roll-forward considerations, security impact, tests run, conflicts and their semantic resolution, and cross-repository dependencies. Never report a branch, commit, pull request, merge, deployment, test run, or external update as complete without authoritative remote evidence.
 <!-- ore-org-baseline:end -->
+
+## Rust-only first-party test and tooling scripts
+
+**Use Rust, not Python, for new tests, test runners, CI helpers, generators,
+validation tools, repository maintenance and developer automation.** Write
+reproducible `cargo test` tests or a small `cargo xtask`/Rust CLI. Do not
+introduce new `.py`, `.pyi` or `.ipynb` files as first-party tests or tooling,
+Python shebangs, `python3`/ `pytest`/ `pip` workflow steps, or a Python
+wrapper around an otherwise Rust-based check.
+
+Existing Python scripts are **legacy migration debt**. Do not remove or
+silently disable their safeguards before a reviewed Rust replacement passes
+behavior-parity, negative, error/exit-code, and relevant integration tests.
+Generated Python client code or expressly approved Python *application*
+components are a distinct product-language concern; they are not permission
+to use Python for tooling or tests. Document narrow exceptions explicitly.
+
+When an implementation is written in AttoLang, Java, or another source language,
+use that language for production semantics as appropriate; this **Rust tooling
+rule** does not require replacing the application's implementation language.
+
+The Rust-only admission check in this repository is scoped to this repository's
+PR diffs; sibling repositories must explicitly adopt the workflow/checker.
+Do not report an unexecuted GitHub job or compiler step as tested.

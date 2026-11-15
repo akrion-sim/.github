@@ -1,0 +1,33 @@
+name: Rust-first test and scripting admission
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rust-script-policy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Format Rust policy tests
+        run: cargo fmt --manifest-path tools/rust-script-policy/Cargo.toml -- --check
+      - name: Lint Rust policy tests
+        run: cargo clippy --manifest-path tools/rust-script-policy/Cargo.toml --all-targets -- -D warnings
+      - name: Test Rust policy implementation
+        run: cargo test --manifest-path tools/rust-script-policy/Cargo.toml
+      - name: Reject new Python test and script tooling
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cargo run --manifest-path tools/rust-script-policy/Cargo.toml -- \
+            --base "$BASE_SHA" --head "$HEAD_SHA"

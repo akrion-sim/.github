@@ -17,6 +17,8 @@ Describe affected repositories, APIs, schemas, generated artifacts, migrations, 
 - [ ] No destructive or history-rewriting operation was executed or recommended
 - [ ] No secrets, personal data, or production data are included
 
+- [ ] New/changed first-party tests, CI and automation use **Rust, not Python**; existing Python scripts remain untouched until a tested Rust-parity migration
+
 ## Risks and roll-forward plan
 
 Describe operational risks, monitoring, compatibility, and reversible roll-forward handling.
