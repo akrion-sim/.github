@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/**"
       - "scripts/validate_workflow_security.py"
+      - "tools/rust-script-policy/**"
   push:
     branches:
       - main
@@ -31,6 +32,6 @@ jobs:
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
       - name: Validate immutable action references
-        run: python3 scripts/validate_workflow_security.py
+        run: cargo run --manifest-path tools/rust-script-policy/Cargo.toml -- --validate-workflows
       - name: Verify policy did not mutate tracked state
         run: git diff --exit-code
