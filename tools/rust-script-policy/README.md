@@ -26,3 +26,16 @@ existing validation remain required.
 
 This checker does **not** replace or validate the legacy relationship registry
 Python tools. Migrate and run parity checks before removing those validators.
+
+## Workflow action reference validator
+
+The same binary now accepts `--validate-workflows` and checks all local
+`.github/workflows/*.yml` and `*.yaml` external `uses:` references for full
+40-character immutable Git commit SHAs. This is a Rust port of the existing
+`validate_workflow_security.py` behavior; it does not expand that validator's
+handling of local/Docker actions. The legacy script is preserved until
+source- and CI-backed parity are reviewed.
+
+```sh
+cargo run --manifest-path tools/rust-script-policy/Cargo.toml -- --validate-workflows
+```

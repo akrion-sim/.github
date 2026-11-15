@@ -1,5 +1,7 @@
 //! Fail-closed guard for newly introduced first-party Python tooling.
 //! Tests and implementation are intentionally std-only Rust.
+mod workflow_security;
+
 use std::env;
 use std::process::{Command, ExitCode};
 
@@ -176,6 +178,18 @@ fn check(base: &str, head: &str) -> Result<(), String> {
 
 fn main() -> ExitCode {
     let args: Vec<String> = env::args().skip(1).collect();
+    if args.as_slice() == ["--validate-workflows"] {
+        return match workflow_security::verify_repository() {
+            Ok(()) => {
+                println!("PASS: action references are immutable");
+                ExitCode::SUCCESS
+            }
+            Err(error) => {
+                eprintln!("FAIL: action references:\n{error}");
+                ExitCode::FAILURE
+            }
+        };
+    }
     let [base_flag, base, head_flag, head] = args.as_slice() else {
         eprintln!("usage: rust-script-policy --base <commit-sha> --head <commit-sha>");
         return ExitCode::FAILURE;
